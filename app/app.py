@@ -1,5 +1,6 @@
 import streamlit as st
 import menu,modelo_classificacao,modelo_regressao,analise,historico
+from analise import render as render_analise
 
 from state import init_state
 
