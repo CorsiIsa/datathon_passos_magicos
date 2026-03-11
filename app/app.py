@@ -25,11 +25,11 @@ with st.sidebar:
     if st.button("Menu"):
         st.session_state.pagina = "Menu"
 
-    if st.button("Modelo Classificação"):
-        st.session_state.pagina = "Modelo Classificação"
+    if st.button("Risco de Desempenho"):
+        st.session_state.pagina = "Risco de Desempenho"
 
-    if st.button("Modelo Regressão"):
-        st.session_state.pagina = "Modelo Regressão"
+    if st.button("Previsão do INDE"):
+        st.session_state.pagina = "Previsão do INDE"
 
     if st.button("Histórico"):
         st.session_state.pagina = "Histórico"
@@ -39,9 +39,9 @@ with st.sidebar:
 
 if st.session_state.pagina == "Menu":
     menu.render()
-elif st.session_state.pagina == "Modelo Classificação":
+elif st.session_state.pagina == "Risco de Desempenho":
     modelo_classificacao.render()
-elif st.session_state.pagina == "Modelo Regressão":
+elif st.session_state.pagina == "Previsão do INDE":
     modelo_regressao.render()
 elif st.session_state.pagina == "Análise":
     analise.render()

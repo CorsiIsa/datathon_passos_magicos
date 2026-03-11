@@ -11,9 +11,9 @@ def render():
     st.title("Análise de Dados e Suporte à Decisão")
 
     st.markdown("""
-    Este aplicativo foi desenvolvido para apoiar a análise dos dados do programa da Associação Passos Mágicos, utilizando técnicas de análise exploratória e Machine Learning para auxiliar no acompanhamento do desenvolvimento dos alunos e apoiar a tomada de decisão.
+    Este aplicativo foi desenvolvido para apoiar a análise dos dados do programa da Associação Passos Mágicos, utilizando técnicas de Machine Learning para auxiliar no acompanhamento do desenvolvimento dos alunos e apoiar a tomada de decisões.
 
-    Por meio da plataforma, é possível consultar e analisar indicadores relacionados ao desenvolvimento dos estudantes, incluindo aspectos acadêmicos, emocionais e de engajamento, permitindo uma visão mais completa da trajetória de cada aluno no programa.
+    Por meio da plataforma, é possível analisar indicadores relacionados ao desenvolvimento dos estudantes, incluindo aspectos acadêmicos, emocionais e de engajamento, permitindo uma visão mais completa da trajetória de cada aluno no programa.
 
     Se for sua primeira vez utilizando o sistema, recomendamos começar pelos indicadores apresentados abaixo, que explicam as principais métricas utilizadas nas análises e predições.
     """)

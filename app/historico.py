@@ -1,22 +1,75 @@
 import streamlit as st
 import pandas as pd
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data_historico"
+DATA_DIR.mkdir(exist_ok=True)
+
+CLASS_PATH = DATA_DIR / "historico_classificacao.xlsx"
+REG_PATH = DATA_DIR / "historico_regressao.xlsx"
+
 
 def render():
+
     st.title("📊 Histórico de Avaliações")
 
-    if "history" not in st.session_state or not st.session_state.history:
-        st.info("Nenhuma avaliação realizada ainda.")
-        return
+    # CLASSIFICAÇÃO
 
-    df = pd.DataFrame(st.session_state.history)
+    st.subheader("Risco de Desempenho")
 
-    st.dataframe(df, use_container_width=True)
+    if CLASS_PATH.exists():
 
-    csv = df.to_csv(index=False).encode("utf-8")
+        df_class = pd.read_excel(CLASS_PATH)
 
-    st.download_button(
-        label="Exportar histórico (CSV)",
-        data=csv,
-        file_name="historico_avaliacoes.csv",
-        mime="text/csv"
-    )
+        st.dataframe(df_class, use_container_width=True)
+
+        with open(CLASS_PATH, "rb") as file:
+
+            st.download_button(
+                "Baixar Histórico de Desempenho",
+                data=file,
+                file_name="historico_classificacao.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+
+        if st.button("Limpar Histórico de Desempenho"):
+
+            CLASS_PATH.unlink()
+
+            st.success("Histórico apagado")
+            st.rerun()
+
+    else:
+        st.info("Nenhuma classificação registrada.")
+
+    st.divider()
+
+    # REGRESSÃO
+
+    st.subheader("Previsão do INDE")
+
+    if REG_PATH.exists():
+
+        df_reg = pd.read_excel(REG_PATH)
+
+        st.dataframe(df_reg, use_container_width=True)
+
+        with open(REG_PATH, "rb") as file:
+
+            st.download_button(
+                "Baixar Histórico do INDE",
+                data=file,
+                file_name="historico_regressao.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+
+        if st.button("Limpar Histórico do INDE"):
+
+            REG_PATH.unlink()
+
+            st.success("Histórico apagado")
+            st.rerun()
+
+    else:
+        st.info("Nenhuma previsão registrada.")

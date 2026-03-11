@@ -2,9 +2,7 @@ import streamlit as st
 import joblib
 from pathlib import Path
 
-# ============================================
 # Caminho base do projeto
-# ============================================
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODEL_DIR = BASE_DIR / "models"
@@ -12,9 +10,8 @@ MODEL_DIR = BASE_DIR / "models"
 CLASSIFICATION_PATH = MODEL_DIR / "classification_model.pkl"
 REGRESSION_PATH = MODEL_DIR / "regression_model.pkl"
 
-# ============================================
+
 # Inicialização do session_state
-# ============================================
 
 def init_state():
     if "classification_model" not in st.session_state:
