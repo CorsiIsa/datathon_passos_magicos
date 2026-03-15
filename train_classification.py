@@ -87,7 +87,7 @@ def load_and_prepare_data():
 def train_classification_model():
     df_final = load_and_prepare_data()
 
-    df_final["risco"] = (df_final["INDE"] < 5).astype(int)
+    df_final["risco"] =  (df_final["IDA"] < 5).astype(int)
 
     features = ["IEG", "IPP", "IPS", "IAA", "IAN"]
 
@@ -106,8 +106,13 @@ def train_classification_model():
     pred = model.predict(X_test)
     proba = model.predict_proba(X_test)[:, 1]
 
-    print(classification_report(y_test, pred))
-    print("AUC:", roc_auc_score(y_test, proba))
+    report = classification_report(y_test, pred, output_dict=False)
+    auc = roc_auc_score(y_test, proba)
+    coeficientes = pd.Series(model.coef_[0], index=features).sort_values(ascending=False)
+
+    print(report)
+    print(auc)
+    print(coeficientes)
 
     os.makedirs("models", exist_ok=True)
     joblib.dump(model, "models/classification_model.pkl")
